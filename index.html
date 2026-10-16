@@ -227,6 +227,65 @@ button.outline{border:2px solid var(--bg);background:transparent;gap:10px}
 .ghost-sm:hover{color:var(--ink);border-color:rgba(255,255,255,.35)}
 @media (max-width:520px){.channel{grid-template-columns:1fr}.steps-ind{gap:14px}}
 
+/* ---------- free website check ---------- */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.check{position:relative;border:1px solid var(--line);border-radius:32px;padding:clamp(24px,5vw,64px);background:radial-gradient(120% 120% at 100% 0%,rgba(255,150,20,.10),transparent 50%),#0A0B0E;overflow:hidden;display:flex;flex-direction:column;gap:36px}
+.check::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;-webkit-mask:linear-gradient(180deg,#000,transparent 70%);mask:linear-gradient(180deg,#000,transparent 70%)}
+.check>*{position:relative;z-index:1}
+.check-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.check-head p{margin:0;max-width:420px;color:var(--muted);font-size:16px;line-height:1.6}
+.check-input{display:flex;align-items:center;gap:8px;background:#121418;border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:8px 8px 8px 24px;transition:border-color .2s,box-shadow .2s}
+.check-input:focus-within{border-color:var(--mango);box-shadow:0 0 0 5px rgba(255,178,30,.14)}
+.check-input .pre{font-family:var(--mono);font-size:15px;color:var(--faint)}
+.check-input input{flex:1;min-width:0;background:none;border:0;outline:none;color:var(--ink);font:600 18px var(--body);padding:12px 0}
+.check-input input::placeholder{color:#5D626B}
+.check-input .btn{border:0;cursor:pointer;font-family:inherit;flex-shrink:0}
+.check-input .btn[disabled]{opacity:.6;cursor:progress}
+.check-msg{margin-top:12px;color:#FF8A7A;font-weight:600;font-size:14px}
+.check-msg:empty{display:none}
+@media (max-width:620px){.check-input{flex-wrap:wrap;border-radius:22px;padding:12px}.check-input .pre{display:none}.check-input input{width:100%;padding:8px 6px}.check-input .btn{width:100%;justify-content:center}}
+
+.check-run{display:flex;flex-direction:column;gap:16px;padding:8px 0}
+.check-run[hidden],.check-res[hidden]{display:none}
+.run-top{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:14px;color:var(--ink)}
+.run-dot{width:10px;height:10px;border-radius:50%;background:var(--mango);box-shadow:0 0 14px var(--mango);animation:pulse 1s ease-in-out infinite}
+.run-bar{height:6px;border-radius:6px;background:rgba(255,255,255,.07);overflow:hidden}
+.run-bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,#FF8A00,var(--mango));box-shadow:0 0 18px rgba(255,160,0,.7);transition:width .8s ease}
+.run-steps{display:flex;gap:10px;flex-wrap:wrap}
+.run-steps span{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--faint);border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:7px 12px;transition:all .3s}
+.run-steps span.on{color:var(--bg);background:var(--mango);border-color:var(--mango)}
+
+.check-res{display:flex;flex-direction:column;gap:28px;animation:paneIn .6s cubic-bezier(.2,.7,.2,1)}
+.res-top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.res-site{font-family:var(--display);font-weight:600;font-size:clamp(20px,2.6vw,28px);letter-spacing:-.03em;word-break:break-all}
+.res-sub{font-family:var(--mono);font-size:12px;color:var(--dim);margin-top:6px;letter-spacing:.04em}
+.gauges{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:16px}
+.gauge{display:flex;flex-direction:column;align-items:center;gap:12px;padding:24px 12px;border:1px solid var(--line);border-radius:22px;background:rgba(255,255,255,.02)}
+.gauge svg{width:120px;height:120px;transform:rotate(-90deg)}
+.gauge .track{stroke:rgba(255,255,255,.08)}
+.gauge .arc{transition:stroke-dashoffset 1.6s cubic-bezier(.2,.7,.2,1);filter:drop-shadow(0 0 6px currentColor)}
+.gauge .ring{position:relative;width:120px;height:120px}
+.gauge .num{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:34px;letter-spacing:-.04em}
+.gauge .lbl{font-weight:700;font-size:15px}
+.gauge .verdict{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.g-good{color:#3DDC97}.g-mid{color:#FFB21E}.g-bad{color:#FF6B5B}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px}
+.res-card{border:1px solid var(--line);border-radius:22px;padding:24px 26px;background:rgba(255,255,255,.02);display:flex;flex-direction:column;gap:14px}
+.res-card h3{font-size:18px}
+.metrics{display:grid;grid-template-columns:1fr auto;gap:12px 16px;margin:0}
+.metrics dt{color:var(--muted);font-size:15px}
+.metrics dd{margin:0;font-family:var(--mono);font-size:15px;font-weight:500;text-align:right}
+.issues{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;counter-reset:i}
+.issues li{counter-increment:i;display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start;font-size:15px;line-height:1.5;color:var(--ink)}
+.issues li::before{content:counter(i);display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:rgba(255,178,30,.12);color:var(--mango);font-family:var(--mono);font-size:13px;font-weight:600}
+.issues li small{display:block;color:var(--dim);font-size:13px;margin-top:2px}
+.issues .ok{color:#3DDC97}
+.res-cta{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;border-radius:22px;padding:24px 26px;background:linear-gradient(135deg,rgba(255,178,30,.14),rgba(255,120,0,.06));border:1px solid rgba(255,178,30,.35)}
+.res-cta strong{font-family:var(--display);font-size:20px;letter-spacing:-.02em}
+.res-cta p{margin:6px 0 0;color:var(--muted);font-size:15px}
+.res-cta .btn,.res-cta .ghost{cursor:pointer;font-family:inherit}
+.res-cta .ghost{background:none}
+
 footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.08);padding:32px 24px 48px;font-size:14px;color:var(--dim)}
 footer .m{font-family:var(--mono)}
 
@@ -259,6 +318,7 @@ footer .m{font-family:var(--mono)}
     <a href="#work" class="hide-sm">Work</a>
     <a href="#services" class="hide-sm">Services</a>
     <a href="#process" class="hide-sm">Process</a>
+    <a href="#check" class="hide-sm">Free check</a>
     <a href="#contact" class="btn sm">Start a project</a>
   </nav>
 </header>
@@ -457,6 +517,70 @@ footer .m{font-family:var(--mono)}
     <div class="languages"><span>ENGLISH</span><span>DUTCH</span><span>SPANISH</span><span>PAPIAMENTU</span></div>
   </div>
 
+</section>
+
+<section id="check" class="wrap block">
+  <div class="check reveal">
+    <div class="check-head">
+      <div>
+        <div class="eyebrow">FREE WEBSITE CHECK</div>
+        <h2>How good is your<br>website, really?</h2>
+      </div>
+      <p>Get an instant score for speed, SEO, accessibility and best practices — tested on mobile, the way your customers see it. Free, in about 30 seconds.</p>
+    </div>
+
+    <form class="check-form" id="checkForm" novalidate>
+      <label for="checkUrl" class="sr">Your website address</label>
+      <div class="check-input">
+        <span class="pre" aria-hidden="true">https://</span>
+        <input id="checkUrl" name="url" type="text" inputmode="url" autocomplete="url" placeholder="yourbusiness.com" spellcheck="false">
+        <button type="submit" class="btn" id="checkBtn">Check my website
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+      <div class="check-msg" id="checkMsg" role="alert"></div>
+    </form>
+
+    <!-- running -->
+    <div class="check-run" id="checkRun" hidden>
+      <div class="run-top"><span class="run-dot"></span><span id="runText" aria-live="polite">Loading your site on a mobile device…</span></div>
+      <div class="run-bar"><span id="runBar"></span></div>
+      <div class="run-steps"><span>Speed</span><span>SEO</span><span>Accessibility</span><span>Best practices</span></div>
+    </div>
+
+    <!-- results -->
+    <div class="check-res" id="checkRes" hidden>
+      <div class="res-top">
+        <div>
+          <div class="res-site" id="resSite"></div>
+          <div class="res-sub">Mobile test · Google Lighthouse</div>
+        </div>
+        <button type="button" class="ghost-sm" id="checkAgain">Check another site</button>
+      </div>
+      <div class="gauges" id="gauges"></div>
+      <div class="res-grid">
+        <div class="res-card">
+          <h3>Key speed metrics</h3>
+          <dl class="metrics" id="metrics"></dl>
+        </div>
+        <div class="res-card">
+          <h3>Top things to fix</h3>
+          <ol class="issues" id="issues"></ol>
+        </div>
+      </div>
+      <div class="res-cta">
+        <div>
+          <strong>Want the full report and a plan to fix it?</strong>
+          <p>We'll review your results and send a clear, no-obligation action plan.</p>
+        </div>
+        <div class="ctas">
+          <button type="button" class="btn" data-report="whatsapp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.6-5.4A8.4 8.4 0 1 1 21 11.5Z"/></svg>
+            Get it on WhatsApp</button>
+          <button type="button" class="ghost" data-report="email">Get it by email</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="process" class="wrap block">
@@ -746,6 +870,211 @@ var MANGO_CONTACT = {
   form.querySelectorAll('[data-close]').forEach(function(b){ b.addEventListener('click', function(){ dlg.close(); }); });
   document.querySelectorAll('[data-open-brief]').forEach(function(b){
     b.addEventListener('click', function(e){ e.preventDefault(); open(b.dataset.openBrief); });
+  });
+})();
+</script>
+
+<script>
+/* ================= FREE WEBSITE CHECK (Google PageSpeed Insights) =================
+   Works without a key for testing. For production, create a free key in Google Cloud
+   (enable "PageSpeed Insights API") and paste it below. */
+var PSI_KEY = 'AIzaSyDocbOSWk8ELzxIPtp8p6Hed0MJW_c58vc';
+(function(){
+  var form = document.getElementById('checkForm');
+  if (!form) return;
+  var input = document.getElementById('checkUrl'), btn = document.getElementById('checkBtn'), msg = document.getElementById('checkMsg');
+  var run = document.getElementById('checkRun'), res = document.getElementById('checkRes');
+  var runText = document.getElementById('runText'), runBar = document.getElementById('runBar'), runSteps = run.querySelectorAll('.run-steps span');
+  var last = null, timer = null;
+
+  var CATS = [
+    { id: 'performance', label: 'Performance' },
+    { id: 'seo', label: 'SEO' },
+    { id: 'accessibility', label: 'Accessibility' },
+    { id: 'best-practices', label: 'Best practices' }
+  ];
+  var METRICS = [
+    ['largest-contentful-paint', 'Main content visible'],
+    ['first-contentful-paint', 'First thing on screen'],
+    ['speed-index', 'Speed index'],
+    ['total-blocking-time', 'Blocked / unresponsive'],
+    ['cumulative-layout-shift', 'Layout jumping']
+  ];
+  // plain-language explanations for the most common problems
+  var PLAIN = {
+    'render-blocking-resources': ['Files are blocking the page from showing', 'Visitors stare at a blank screen while scripts and styles load.'],
+    'uses-optimized-images': ['Images are heavier than they need to be', 'Compressing them would make the site load noticeably faster.'],
+    'modern-image-formats': ['Images use old, heavy formats', 'Modern formats like WebP/AVIF are much smaller.'],
+    'uses-responsive-images': ['Phones download desktop-sized images', 'Wasted data and slower loading on mobile.'],
+    'offscreen-images': ['All images load at once', 'Images below the fold should load only when needed.'],
+    'unused-javascript': ['Lots of unused code is downloaded', 'Removing it speeds up every page view.'],
+    'unused-css-rules': ['Unused styling code slows the page', 'The browser downloads styles it never uses.'],
+    'unminified-javascript': ['Code isn’t compressed', 'Minifying files is a quick speed win.'],
+    'unminified-css': ['Styles aren’t compressed', 'Minifying files is a quick speed win.'],
+    'server-response-time': ['The server responds slowly', 'Better hosting or caching would help.'],
+    'uses-text-compression': ['Text files aren’t compressed', 'Turning on compression is an easy fix.'],
+    'uses-long-cache-ttl': ['Returning visitors re-download everything', 'Proper caching makes repeat visits instant.'],
+    'total-byte-weight': ['The page is very heavy', 'Too many megabytes for a mobile connection.'],
+    'dom-size': ['The page structure is overly complex', 'It slows down rendering on phones.'],
+    'third-party-summary': ['Third-party scripts slow things down', 'Chat widgets, trackers and embeds add weight.'],
+    'meta-description': ['Missing description for Google', 'Google may show random text under your link.'],
+    'document-title': ['Missing page title', 'Hurts how you appear in search results.'],
+    'image-alt': ['Images are missing descriptions', 'Bad for SEO and for visually impaired visitors.'],
+    'link-text': ['Links say things like “click here”', 'Descriptive links help SEO.'],
+    'is-crawlable': ['Google may be blocked from your page', 'This can keep you out of search results.'],
+    'viewport': ['Not set up for mobile screens', 'The site won’t scale properly on phones.'],
+    'tap-targets': ['Buttons are too small to tap', 'Frustrating on mobile.'],
+    'font-size': ['Text is too small on mobile', 'Visitors have to zoom to read.'],
+    'color-contrast': ['Some text is hard to read', 'Low contrast between text and background.'],
+    'is-on-https': ['Not fully secure (HTTPS)', 'Browsers may warn visitors.'],
+    'errors-in-console': ['The page has technical errors', 'Something on the page is broken behind the scenes.'],
+    'image-aspect-ratio': ['Images look stretched', 'Wrong proportions on some images.'],
+    'button-name': ['Buttons without labels', 'Screen readers can’t tell what they do.'],
+    'heading-order': ['Headings are out of order', 'Hurts structure for SEO and accessibility.'],
+    'largest-contentful-paint-element': null, 'lcp-lazy-loaded': ['The main image loads too late', 'It should load first, not last.']
+  };
+
+  function cls(s){ return s >= 90 ? 'g-good' : (s >= 50 ? 'g-mid' : 'g-bad'); }
+  function verdict(s){ return s >= 90 ? 'Great' : (s >= 50 ? 'Needs work' : 'Poor'); }
+  function normalize(v){
+    v = (v || '').trim();
+    if (!v) return null;
+    if (!/^https?:\/\//i.test(v)) v = 'https://' + v;
+    try { var u = new URL(v); if (!/\./.test(u.hostname)) return null; return u.href; } catch (e) { return null; }
+  }
+
+  function startRunning(){
+    var phases = ['Loading your site on a mobile device…', 'Measuring speed…', 'Checking SEO…', 'Testing accessibility…', 'Reviewing best practices…', 'Almost there — crunching the numbers…'];
+    var i = 0, p = 4;
+    run.hidden = false; res.hidden = true;
+    runText.textContent = phases[0]; runBar.style.width = '4%';
+    runSteps.forEach(function(s){ s.classList.remove('on'); });
+    timer = setInterval(function(){
+      i = Math.min(i + 1, phases.length - 1);
+      runText.textContent = phases[i];
+      if (i >= 1 && i <= 4) runSteps[i - 1].classList.add('on');
+      p = Math.min(92, p + (92 - p) * 0.28);
+      runBar.style.width = p + '%';
+    }, 3200);
+  }
+  function stopRunning(){ clearInterval(timer); runBar.style.width = '100%'; }
+
+  function gauge(cat, score){
+    var C = 2 * Math.PI * 52;
+    var d = document.createElement('div'); d.className = 'gauge';
+    d.innerHTML =
+      '<div class="ring ' + cls(score) + '">' +
+        '<svg viewBox="0 0 120 120" aria-hidden="true"><circle class="track" cx="60" cy="60" r="52" fill="none" stroke-width="9"/>' +
+        '<circle class="arc" cx="60" cy="60" r="52" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-dasharray="' + C + '" stroke-dashoffset="' + C + '"/></svg>' +
+        '<div class="num">0</div></div>' +
+      '<div class="lbl">' + cat.label + '</div>' +
+      '<div class="verdict ' + cls(score) + '">' + verdict(score) + '</div>';
+    d.setAttribute('role', 'img');
+    d.setAttribute('aria-label', cat.label + ' score ' + score + ' out of 100, ' + verdict(score));
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){
+      d.querySelector('.arc').style.strokeDashoffset = C * (1 - score / 100);
+      var n = d.querySelector('.num'), t0 = performance.now();
+      (function tick(t){ var k = Math.min(1, (t - t0) / 1400); n.textContent = Math.round(score * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(tick); })(t0);
+    }); });
+    return d;
+  }
+
+  function topIssues(lh){
+    var list = [], seen = {};
+    CATS.forEach(function(c){
+      var cat = lh.categories[c.id]; if (!cat) return;
+      cat.auditRefs.forEach(function(ref){
+        var a = lh.audits[ref.id];
+        if (!a || a.score === null || a.score === undefined || a.score >= 0.9) return;
+        if (ref.group === 'metrics' || a.scoreDisplayMode === 'informative' || a.scoreDisplayMode === 'notApplicable' || a.scoreDisplayMode === 'manual') return;
+        if (PLAIN[ref.id] === null) return;
+        var plain = PLAIN[ref.id];
+        var title = plain ? plain[0] : a.title;
+        if (seen[title]) return; seen[title] = 1;
+        var savings = (a.details && a.details.overallSavingsMs) || 0;
+        list.push({ title: title, note: plain ? plain[1] : (a.displayValue || ''), rank: (plain ? 2 : 0) + (1 - a.score) * 2 + (ref.weight || 0) / 10 + Math.min(savings, 4000) / 1000 });
+      });
+    });
+    list.sort(function(a, b){ return b.rank - a.rank; });
+    return list.slice(0, 5);
+  }
+
+  function render(url, lh){
+    last = { url: url, scores: {}, issues: [] };
+    document.getElementById('resSite').textContent = url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+    var g = document.getElementById('gauges'); g.innerHTML = '';
+    CATS.forEach(function(c){
+      var cat = lh.categories[c.id]; if (!cat || cat.score === null) return;
+      var s = Math.round(cat.score * 100); last.scores[c.label] = s; g.appendChild(gauge(c, s));
+    });
+    var m = document.getElementById('metrics'); m.innerHTML = '';
+    METRICS.forEach(function(x){
+      var a = lh.audits[x[0]]; if (!a || !a.displayValue) return;
+      var dt = document.createElement('dt'); dt.textContent = x[1];
+      var dd = document.createElement('dd'); dd.textContent = a.displayValue; dd.className = cls(Math.round((a.score || 0) * 100));
+      m.appendChild(dt); m.appendChild(dd);
+    });
+    var ul = document.getElementById('issues'); ul.innerHTML = '';
+    var issues = topIssues(lh); last.issues = issues.map(function(i){ return i.title; });
+    if (!issues.length) {
+      var li = document.createElement('li'); li.innerHTML = '<span class="ok">No major problems found — nicely done.</span>'; ul.appendChild(li);
+    }
+    issues.forEach(function(i){
+      var li = document.createElement('li');
+      var t = document.createElement('span'); t.textContent = i.title;
+      if (i.note) { var sm = document.createElement('small'); sm.textContent = i.note; t.appendChild(sm); }
+      li.appendChild(t); ul.appendChild(li);
+    });
+    run.hidden = true; res.hidden = false;
+    res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    msg.textContent = '';
+    var url = normalize(input.value);
+    if (!url) { msg.textContent = 'Please enter a valid website address, like yourbusiness.com'; input.focus(); return; }
+    btn.disabled = true; form.querySelector('.check-input').setAttribute('aria-busy', 'true');
+    startRunning();
+    var api = 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed?strategy=mobile' +
+      '&category=performance&category=seo&category=accessibility&category=best-practices' +
+      '&url=' + encodeURIComponent(url) + (PSI_KEY ? '&key=' + encodeURIComponent(PSI_KEY) : '');
+    fetch(api).then(function(r){
+      return r.json().then(function(j){ if (!r.ok) throw { status: r.status, j: j }; return j; });
+    }).then(function(j){
+      stopRunning();
+      setTimeout(function(){ render(url, j.lighthouseResult); }, 300);
+    }).catch(function(err){
+      stopRunning(); run.hidden = true;
+      var s = err && err.status;
+      msg.textContent = s === 429
+        ? 'Our checker is busy right now. Please try again in a minute.'
+        : (s === 400 || s === 500)
+          ? 'We couldn’t load that site. Check the address and make sure the site is online.'
+          : 'Something went wrong running the check. Please try again.';
+    }).then(function(){
+      btn.disabled = false; form.querySelector('.check-input').removeAttribute('aria-busy');
+    });
+  });
+
+  document.getElementById('checkAgain').addEventListener('click', function(){
+    res.hidden = true; input.value = ''; input.focus();
+    form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  // send results to you via WhatsApp / email
+  document.querySelectorAll('[data-report]').forEach(function(b){
+    b.addEventListener('click', function(){
+      if (!last) return;
+      var L = ['FREE WEBSITE CHECK — full report request', '', 'Website: ' + last.url, ''];
+      Object.keys(last.scores).forEach(function(k){ L.push(k + ': ' + last.scores[k] + '/100'); });
+      if (last.issues.length) { L.push('', 'Top issues:'); last.issues.forEach(function(t, i){ L.push((i + 1) + '. ' + t); }); }
+      L.push('', 'Please send me the full report and a plan to fix it.');
+      var text = L.join('\n');
+      var c = window.MANGO_CONTACT || {};
+      if (b.dataset.report === 'whatsapp') window.open('https://wa.me/' + String(c.whatsapp || '').replace(/\D/g, '') + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
+      else window.location.href = 'mailto:' + (c.email || '') + '?subject=' + encodeURIComponent('Website check — ' + last.url.replace(/^https?:\/\//, '')) + '&body=' + encodeURIComponent(text);
+    });
   });
 })();
 </script>
